@@ -29,14 +29,16 @@ function Home() {
                         </Link>
                     </div>
                     <div className='flex flex-col h-full w-2/3'>
-                        <div className='h-1/2 bg-5th rounded-2xl p-5 transform transition-transform duration-300 hover:scale-104 shadow-lg'>
-                            <h1 className='text-3xl'>Crear nuevo análisis</h1>
-                            <div className='p-5 flex h-auto w-auto mt-4 rounded-2xl'>
-                                <img src="https://cdn-icons-png.flaticon.com/512/7163/7163714.png" alt="Crear análisis" className='h-30'/>
-                                <p className='ml-10 text-justify'>Explora patrones, tendencias y resultados clave a partir de la información procesada.  
-                                Usa las herramientas disponibles para generar informes detallados y tomar decisiones informadas.</p>
+                        <Link to="/newanalisis" className='h-1/2 bg-5th rounded-2xl p-5 transform transition-transform duration-300 hover:scale-104 shadow-lg'>
+                            <div className=''>
+                                <h1 className='text-3xl'>Crear nuevo análisis</h1>
+                                <div className='p-5 flex h-auto w-auto mt-4 rounded-2xl'>
+                                    <img src="https://cdn-icons-png.flaticon.com/512/7163/7163714.png" alt="Crear análisis" className='h-30'/>
+                                    <p className='ml-10 text-justify'>Explora patrones, tendencias y resultados clave a partir de la información procesada.  
+                                    Usa las herramientas disponibles para generar informes detallados y tomar decisiones informadas.</p>
+                                </div>
                             </div>
-                        </div>
+                        </Link>
                         <div className='flex h-1/2 mt-10'>
                             <div className='h-full w-1/2 bg-5th mr-10 rounded-2xl p-5 transform transition-transform duration-300 hover:scale-104 shadow-lg'>
                                 <h1 className='text-3xl'>Lista de análisis</h1>
