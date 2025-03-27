@@ -14,7 +14,7 @@ function Home() {
                         <h1 className='text-xl mb-4'>Notificaciónes</h1>
                     </div>
                 </div>
-                <div className='flex flex-grow w-full p-10'>
+                <div className='flex flex-grow w-full h-full p-10'>
                     <div className='flex flex-col h-full w-1/3 mr-10'>
                         <div className='flex flex-col bg-5th h-7/8 rounded-2xl p-5 transform transition-transform duration-300 hover:scale-104 shadow-lg'>
                             <h1 className='text-3xl'>Resumen de análisis</h1>
@@ -40,19 +40,23 @@ function Home() {
                             </div>
                         </Link>
                         <div className='flex h-1/2 mt-10'>
-                            <div className='h-full w-1/2 bg-5th mr-10 rounded-2xl p-5 transform transition-transform duration-300 hover:scale-104 shadow-lg'>
-                                <h1 className='text-3xl'>Lista de análisis</h1>
-                                <div className='mt-5'>
-                                    <p>No tienes análisis disponibles</p>
-                                </div>
-                            </div>
-                            <div className='flex flex-col h-full w-1/2'>
-                                <div className='h-3/4 w-full bg-5th rounded-2xl p-5 transform transition-transform duration-300 hover:scale-104 shadow-lg'>
-                                    <h1 className='text-3xl'>Notificaciones</h1>
+                            <Link to="/analisislist" className='h-full w-1/2 bg-5th mr-10 rounded-2xl p-5 transform transition-transform duration-300 hover:scale-104 shadow-lg'>
+                                <div className=''>
+                                    <h1 className='text-3xl'>Lista de análisis</h1>
                                     <div className='mt-5'>
-                                        <p>No tienes Notificaciones pendientes</p>
+                                        <p>No tienes análisis disponibles</p>
                                     </div>
                                 </div>
+                            </Link>
+                            <div className='flex flex-col h-full w-1/2'>
+                                <Link to="/patientlist" className='h-3/4 bg-5th rounded-2xl p-5 transform transition-transform duration-300 hover:scale-104 shadow-lg'>
+                                    <div className=''>
+                                        <h1 className='text-3xl'>Lista de pacientes</h1>
+                                        <div className='mt-5'>
+                                            <p>No tienes pacientes pendientes</p>
+                                        </div>
+                                    </div>
+                                </Link>
                                 <Link to="/" className='flex h-1/4 mt-10 bg-red-500 rounded-2xl items-center justify-center shadow-xl transform transition-transform duration-300 hover:scale-104'>
                                     <div>
                                         <p className='text-white text-xl font-semibold'>Cerrar sesión</p>
