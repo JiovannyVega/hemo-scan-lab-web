@@ -3,7 +3,13 @@ import API_ENDPOINTS from '../apiEndpoints';
 
 export const login = async (credentials) => {
     const response = await axiosInstance.post(API_ENDPOINTS.LOGIN, credentials);
-    return response.data;
+    const { token, refreshToken, user } = response.data.data;
+
+    // Guardar el token y el refreshToken en el almacenamiento local
+    localStorage.setItem('jwtToken', token);
+    localStorage.setItem('refreshToken', refreshToken);
+
+    return user; // Retornar los datos del usuario
 };
 
 export const register = async (userData) => {

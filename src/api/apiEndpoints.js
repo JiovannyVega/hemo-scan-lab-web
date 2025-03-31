@@ -1,7 +1,7 @@
 const API_ENDPOINTS = {
     AUTH: {
-        LOGIN: '/auth/login', // Autentica al usuario y devuelve un token
-        REGISTER: '/auth/register', // Registra un nuevo usuario
+        LOGIN: '/user/login', // Autentica al usuario y devuelve un token
+        REGISTER: '/user/register', // Registra un nuevo usuario
     },
     USER: {
         GET_USER: '/user', // Obtiene la información del usuario actual
@@ -9,11 +9,11 @@ const API_ENDPOINTS = {
         DELETE_USER: '/user/delete', // Elimina la cuenta del usuario
     },
     LABS: {
-        GET_LABS: '/labs', // Obtiene la lista de todos los laboratorios
-        GET_LAB_BY_ID: '/labs/:id', // Obtiene un laboratorio por su ID
-        CREATE_LAB: '/labs/create', // Crea un nuevo laboratorio
-        UPDATE_LAB: '/labs/update/:id', // Actualiza un laboratorio existente
-        DELETE_LAB: '/labs/delete/:id', // Elimina un laboratorio
+        GET_LABS: '/lab', // Obtiene la lista de todos los laboratorios
+        GET_LAB_BY_ID: '/lab/:id', // Obtiene un laboratorio por su ID
+        CREATE_LAB: '/lab/create', // Crea un nuevo laboratorio
+        UPDATE_LAB: '/lab/update/:id', // Actualiza un laboratorio existente
+        DELETE_LAB: '/lab/delete/:id', // Elimina un laboratorio
     },
 };
 
