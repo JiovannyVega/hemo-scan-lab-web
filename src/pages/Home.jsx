@@ -1,13 +1,20 @@
-import React from 'react'
+import React, { useState, useEffect} from 'react'
 import { Link } from 'react-router-dom' 
 
 function Home() {
+    const [userName, setUser] = useState('')
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('user'))
+        if (user && user.email) {
+            setUser(user.email)
+        }
+    }, [])
     return (
         <>
             <div className='bg-white flex w-full flex-col items-center'>
                 <div className='flex h-1/9 w-full'>
                     <div className='flex flex-col ml-10 h-full justify-end'>
-                        <h1 className='font-bold text-3xl'>¡Hola Nombre de usuario!</h1>
+                        <h1 className='font-bold text-3xl'>¡Hola, {userName}!</h1>
                         <h2 className='text-xl'>¿En qué podemos ayudarte hoy?</h2>
                     </div>
                     <div className='flex ml-auto items-end mr-10 h-full'>
