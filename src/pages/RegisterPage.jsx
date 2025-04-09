@@ -1,7 +1,25 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { Link } from 'react-router-dom'
+import { getLabs } from '../api/services/labService'
+import { register } from '../api/services/authService'
+import { handleApiError } from '../api/utils/apiUtils'
+import { useNavigate } from 'react-router-dom'
 
 const RegisterPage = () => {
+    
+    const [labs, setLabs] = useState([])
+    const [selectedLab, setSelectedLab] = useState('')
+    useEffect(() => {
+        const fetchLabs = async () => {
+            try {
+                const response = await getLabs()
+                setLabs(response.data)
+            } catch (error) {
+                console.error('Error fetching labs:', error)
+            }
+        }
+        fetchLabs()
+    }, [])
     return (
         <>
             <div className='bg-linear-to-tr from-[#284B63] to-[#4f738d] h-screen flex items-center justify-center text-white'>
@@ -14,10 +32,38 @@ const RegisterPage = () => {
                         <p className='text-lg mt-3'>Ya tengo una cuenta</p>
                     </Link>
                     <form className='flex flex-col mt-3'>
-                        <input type='text' placeholder='Usuario' className='p-4 rounded-xl border-2 my-3 border-white' />
-                        <input type='text' placeholder='Correo electrónico' className='p-4 rounded-xl border-2 my-3 border-white' />
-                        <input type='text' placeholder='Confirma tu correo' className='p-4 rounded-xl border-2 my-3 border-white' />
-                        <input type='password' placeholder='Contraseña' className='p-4 rounded-xl border-2 my-3 border-white' />
+                        <input 
+                            type='text' 
+                            placeholder='Usuario' 
+                            className='p-4 rounded-xl border-2 my-3 border-white focus:outline-none' 
+                        />
+                        <input 
+                            type='text' 
+                            placeholder='Correo electrónico' 
+                            className='p-4 rounded-xl border-2 my-3 border-white focus:outline-none' 
+                        />
+                        <input 
+                            type='text' 
+                            placeholder='Contraseña' 
+                            className='p-4 rounded-xl border-2 my-3 border-white focus:outline-none' 
+                        />
+                        <input 
+                            type='password' 
+                            placeholder='Confirma tu contraseña' 
+                            className='p-4 rounded-xl border-2 my-3 border-white focus:outline-none' 
+                        />
+                        <select 
+                            value={selectedLab}
+                            onChange={(e) => setSelectedLab(e.target.value)}
+                            className='focus:outline-none'
+                        >
+                            <option value="" disabled selected>Selecciona tu laboratorio</option>
+                            {labs.map((lab) => (
+                                <option key={lab.id} value={lab.id} className='text-black'>
+                                    {lab.name}
+                                </option>
+                            ))}
+                        </select>
                         <button className='bg-1st p-4 my-3 rounded-xl text-lg shadow-xl'>Registrarme</button>
                     </form>
                 </div>
