@@ -1,8 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Lefter from '../components/Lefter';
+import { getAllAnalysis } from '../api/services/analysisService';
 
 const AnalisysList = () => {
     const [isBlurred, setIsBlurred] = useState(false);
+    const [analysis, setAnalysis] = useState([]);
+
+    useEffect(() => {
+        const fetchAnalysis = async () => {
+            try {
+                const response = await getAllAnalysis();
+                setAnalysis(response.data);
+            } catch (error) {
+                console.error('Error fetching analyses:', error);
+            }
+        };
+        fetchAnalysis();
+    }, []);
 
     return (
     <div className="relative w-full overflow-hidden">
@@ -23,46 +37,28 @@ const AnalisysList = () => {
                         <thead className='bg-5th text-white'>
                             <tr>
                                 <th className='p-5 border-b-2 border-5th'>ID del análisis</th>
-                                <th className='p-5 border-b-2 border-5th'>Nombre del paciente</th>
+                                <th className='p-5 border-b-2 border-5th'>Paciente</th>
+                                <th className='p-5 border-b-2 border-5th'>Laboratorio</th>
                                 <th className='p-5 border-b-2 border-5th'>Fecha del análisis</th>
                                 <th className='p-5 border-b-2 border-5th'>Estado del análisis</th>
                                 <th className='p-5 border-b-2 border-5th'>Acciones</th>
                             </tr>
                         </thead>
                         <tbody className='text-center'>
-                            <tr className='border-b-2 border-5th'>
-                                <td className='p-5'>1</td>
-                                <td className='p-5'>Juan Pérez</td>
-                                <td className='p-5'>2023-10-01</td>
-                                <td className='p-5 bg-green-600'>Completado</td>
-                                <td className='p-5'>
-                                    <button className='mr-2 text-blue-500'>Editar</button>
-                                    <button className='mr-2 text-green-500'>Ver detalles</button>
-                                    <button className='text-yellow-500'>Cambiar estado</button>
-                                </td>
-                            </tr>
-                            <tr className='border-b-2 border-5th'>
-                                <td className='p-5'>2</td>
-                                <td className='p-5'>María López</td>
-                                <td className='p-5'>2023-10-02</td>
-                                <td className='p-5 bg-red-500'>Pendiente</td>
-                                <td className='p-5'>
-                                    <button className='mr-2 text-blue-500'>Editar</button>
-                                    <button className='mr-2 text-green-500'>Ver detalles</button>
-                                    <button className='text-yellow-500'>Cambiar estado</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className='p-5'>3</td>
-                                <td className='p-5'>Carlos García</td>
-                                <td className='p-5'>2023-10-03</td>
-                                <td className='p-5 bg-amber-500'>En proceso</td>
-                                <td className='p-5'>
-                                    <button className='mr-2 text-blue-500'>Editar</button>
-                                    <button className='mr-2 text-green-500'>Ver detalles</button>
-                                    <button className='text-yellow-500'>Cambiar estado</button>
-                                </td>
-                            </tr>
+                            {analysis.map((analysis) => (
+                                <tr key={analysis.id} className='border-b-2 border-5th'>
+                                    <td className='p-5'>{analysis.id}</td>
+                                    <td className='p-5'>{analysis.person.first_name} {analysis.person.last_name}</td>
+                                    <td className='p-5'>{analysis.lab.name}</td>
+                                    <td className='p-5'>{analysis.date}</td>
+                                    <td className='p-5'>{analysis.status}</td>
+                                    <td className='p-5'>
+                                        <button className='mr-2 text-blue-500'>Editar</button>
+                                        <button className='mr-2 text-green-500'>Ver detalles</button>
+                                        <button className='text-yellow-500'>Cambiar estado</button>
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>
@@ -72,4 +68,4 @@ const AnalisysList = () => {
     );
 };
 
-export default AnalisysList
+export default AnalisysList;
