@@ -1,8 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Lefter from '../components/Lefter';
+import { getAllPersons } from '../api/services/personService'
 
 const PatientList = () => {
     const [isBlurred, setIsBlurred] = useState(false);
+
+    const [patients, setPatients] = useState([])
+    
+    useEffect(() => {
+        const fetchPatients = async () => {
+            try {
+                const response = await getAllPersons()
+                setPatients(response.data)
+            } catch (error) {
+                console.error('Error fetching patients:', error)
+            }
+        }
+        fetchPatients()
+    }, [])
+    
 
     return (
     <div className="relative w-full overflow-hidden">
@@ -30,33 +46,15 @@ const PatientList = () => {
                             </tr>
                         </thead>
                         <tbody className='text-center'>
-                            <tr className='border-b-2 border-5th'>
-                                <td className='p-5'>Juan Pérez</td>
-                                <td className='p-5'>PEJU850101HDFRZN09</td>
-                                <td className='p-5'>1985-01-01</td>
-                                <td className='p-5'>Masculino</td>
-                                <td className='p-5'>
-                                    <button className='text-green-500'>Ver historial</button>
-                                </td>
-                            </tr>
-                            <tr className='border-b-2 border-5th'>
-                                <td className='p-5'>María López</td>
-                                <td className='p-5'>LOMA920202MDFRZR03</td>
-                                <td className='p-5'>1992-02-02</td>
-                                <td className='p-5'>Femenino</td>
-                                <td className='p-5'>
-                                    <button className='text-green-500'>Ver historial</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className='p-5'>Carlos García</td>
-                                <td className='p-5'>GACA950303HDFRZN07</td>
-                                <td className='p-5'>1995-03-03</td>
-                                <td className='p-5'>Masculino</td>
-                                <td className='p-5'>
-                                    <button className='text-green-500'>Ver historial</button>
-                                </td>
-                            </tr>
+                            {patients.map((patient) => (
+                                <tr key={patient.id}>
+                                    <td className="border border-gray-300 px-4 py-2">{`${patient.first_name} ${patient.last_name}`}</td>
+                                    <td className="border border-gray-300 px-4 py-2">{patient.curp}</td>
+                                    <td className="border border-gray-300 px-4 py-2">{patient.birth_date}</td>
+                                    <td className="border border-gray-300 px-4 py-2">{patient.gender}</td>
+                                    <td className="border border-gray-300 px-4 py-2">see Analysis</td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>
