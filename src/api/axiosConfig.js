@@ -2,7 +2,7 @@ import axios from 'axios';
 import API_ENDPOINTS from './apiEndpoints';
 
 const axiosInstance = axios.create({
-    baseURL: 'https://hemo-scan-api.onrender.com/api', // Cambia esto a la URL base de tu API
+    baseURL: 'https://hemo-scan-api-production.up.railway.app/api', // Cambia esto a la URL base de tu API
     timeout: 10000,
     headers: {
         'Content-Type': 'application/json',

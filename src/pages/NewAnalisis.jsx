@@ -8,20 +8,20 @@ const NewAnalisis = () => {
     <div className="relative w-full overflow-hidden">
       <Lefter onVisibilityChange={setIsBlurred} />
       <div className={`flex flex-row w-full min-h-full transition-all duration-300 ${isBlurred ? 'blur-sm' : ''}`}>
-        <div className='flex flex-col w-1/2 p-5 justify-center'>
-          <h1 className='text-4xl text-1st font-semibold'>Crear análisis nunca fue tan fácil</h1>
-          <p className='mt-2'>Solo tienes que completar los siguientes campos con la información requerida y, en cuestión de segundos, tendrás un informe adaptado a tus necesidades. ¡Empieza ahora y obtén resultados precisos sin complicaciones!</p>
-        </div>
-        <div className='flex bg-linear-to-tr from-1st to-4th w-1/2 justify-center items-center text-white'>
-          <form className='flex flex-col w-2/3 p-5 border-2 border-white rounded-2xl shadow-xl'>
-            <p className='text-2xl'>Nuevo análisis</p>
-            <p className='font-light'>Rellene los campos</p>
-            <input type='text' placeholder='Seleccionar paciente' className='p-2 rounded-xl border-2 border-white my-3 focus:outline-none' />
+        <div className='flex flex-col p-10 w-full'>
+          <div className='flex flex-row mb-10 w-full items-center'>
+            <div className='w-1/2'>
+              <h1 className='text-3xl'>Nuevo análisis</h1>
+              <p className=''>Creación de nuevos análisis</p>
+            </div>
+          </div>
+          <div className='flex flex-col w-full border-2 border-5th rounded-2xl shadow-md p-10'>
+            <input type='text' placeholder='Id de la persona' className='p-2 rounded-xl border-2 border-white my-3 focus:outline-none' />
             <input type='date' className='p-2 rounded-xl border-2 border-white my-3 focus:outline-none' />
+            <input type='text' placeholder='Id del laboratorio' className='p-2 rounded-xl border-2 border-white my-3 focus:outline-none' />
             <input type='text' placeholder='Descripción del análisis' className='p-2 rounded-xl border-2 border-white my-3 focus:outline-none' />
-            <input type='text' placeholder='Análisis a realizar' className='p-2 rounded-xl border-2 border-white my-3 focus:outline-none'/>
-            <input type="submit" placeholder='Guardar' className='p-2 rounded-xl border-2 border-white mt-2 focus:outline-none'/>
-          </form>
+            <input type="submit" placeholder='Guardar' className='p-2 rounded-xl border-2 border-white mt-2 focus:outline-none bg-2nd text-white' />
+          </div>
         </div>
       </div>
     </div>
