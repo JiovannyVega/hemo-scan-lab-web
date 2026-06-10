@@ -1,12 +1,37 @@
-# React + Vite
+# HemoScan — Lab Web Portal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Web portal for laboratories in the **HemoScan / MediLab Connect** ecosystem: a blood test management platform where labs upload blood analysis results and patients consult them securely from a mobile app.
 
-Currently, two official plugins are available:
+This repo contains the lab-facing React application. The patient mobile app lives in [`hemo-scan-patient-mobile`](https://github.com/JiovannyVega/hemo-scan-patient-mobile), and the original AI-powered hemoglobin analysis prototype in [`HemoScan`](https://github.com/JiovannyVega/HemoScan).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## What labs can do
 
-## Expanding the ESLint configuration
+- Upload and manage patient blood analysis results
+- Manage patient records across a multi-lab / multi-patient data model
+- Authenticate with secure login flows
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Project structure
+
+```
+src/
+├── api/
+│   ├── services/   # API service layer (axios-based calls to the backend)
+│   └── utils/      # Request helpers
+├── components/     # Shared UI (Header, Footer, ...)
+└── pages/          # Route-level views
+```
+
+## Tech stack
+
+React 19 · Vite · Tailwind CSS 4 · React Router DOM
+
+## Getting started
+
+```bash
+npm install
+npm run dev
+```
+
+---
+
+**Status:** in active development. Part of the HemoScan ecosystem: Lab web (this repo) · [Patient mobile app](https://github.com/JiovannyVega/hemo-scan-patient-mobile) · [AI analysis prototype](https://github.com/JiovannyVega/HemoScan).
